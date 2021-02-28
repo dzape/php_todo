@@ -33,7 +33,11 @@
             <?php 
                 foreach ($todos as $todoName => $todo) { ?>
                     <div style="margin-bottom: 20px;">
-                        <input type="checkbox" <?php echo $todo['completed'] ? 'checked' : '' ?>>
+                        
+                        <form style="display: inline-block;" action="app/status.php" method="POST">
+                            <input type="hidden" name="todo_name" value="<?php echo $todoName ?>">                        
+                            <input type="checkbox" <?php echo $todo['completed'] ? 'checked' : '' ?>>
+                        </form>
                         
                         <?php echo " TODO : $todoName "; ?> 
                             <form style="display: inline-block" action="app/delete.php" method="POST">
@@ -42,6 +46,15 @@
                             </form>
                     </div>
             <?php }; ?>
+
+            <script>
+                const checkbox = document.querySelectorAll('input[type=checkbox]');
+                checkbox.forEach(ch => {
+                    ch.onclick = function(){
+                        this.parentNode.submit();
+                    };
+                })
+            </script>
               
         </div>
     </body>
