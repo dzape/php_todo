@@ -44,7 +44,5 @@
             <?php }; ?>
               
         </div>
-       
     </body>
-
 </html>
